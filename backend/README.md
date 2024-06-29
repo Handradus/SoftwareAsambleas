@@ -1,9 +1,18 @@
 > [!IMPORTANT]
-> Recuerden que deben cambiar el contenido del README.md por su número de grupo, explicación breve del tema asignado y los nombres de los integrantes del grupo.
+> No se que numero de grupo somos
+>Integrantes
+
 
 # Software para Asambleas
 
-El siguiente software
+El siguiente software busca compilar las actividades normalmente realizadas en una Asamblea estudiantil para un acceso facil y manejar los documentos generados de manera eficaz y segura.
+
+## Integrantes 
+-Humberto Andrades Daza
+-Benjamin Carrasco
+-Hector Diaz
+-Diego Guzman
+-Lucas Mendez
 
 ## Dependencias utilizadas 🛠️
 
