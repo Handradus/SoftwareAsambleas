@@ -1,24 +1,26 @@
-> [!TIP]
-> Les recomiendo usar la plantilla, debido a que les ahorrará tiempo al ya tener la implementación del login.
+> [!IMPORTANT]
+> No se que numero de grupo somos
+>Integrantes
 
-# Template Proyecto Metodología de Desarrollo 👨‍💻
 
-Esta plantilla está diseñada para proporcionar a los estudiantes del curso de Metodología de Desarrollo las bases de un proyecto, incluyendo un backend con una funcionalidad de inicio de sesión básica y un frontend correspondiente.
+# Software para Asambleas
 
-## Cosas a tener en cuenta 📚
+El siguiente software busca compilar las actividades normalmente realizadas en una Asamblea estudiantil para un acceso facil y manejar los documentos generados de manera eficaz y segura.
 
-Este proyecto consta de dos componentes principales:
+## Integrantes 
+-Humberto Andrades Daza
+-Benjamin Carrasco
+-Hector Diaz
+-Diego Guzman
+-Lucas Mendez
 
-#### Backend 🚀
+## Dependencias utilizadas 🛠️
 
-El backend del proyecto proporciona la lógica y la funcionalidad del lado del servidor. Incluye una implementación básica de inicio de sesión. Este inicio de sesión no utiliza tokens para la autenticación. Los estudiantes pueden encontrar más información y acceder al código del backend en el siguiente enlace:
-
-- [Backend](./backend/)
-
-#### Frontend 🚀
-
-El frontend del proyecto es la interfaz de usuario con la que interactuan los usuarios finales. Incluye la interfaz de inicio de sesión que se conecta al backend. Los estudiantes pueden acceder al código del frontend y explorar su implementación en el siguiente enlace:
-
-- [Frontend](./frontend)
-
-⌨️ with ❤️ by [@Didudocl](https://github.com/DiegoSalazarJara) & [@Metalcl](https://github.com/Metalcl)
+- Express: Framework de aplicación web para Node.js.
+- Mongoose: Biblioteca de modelado de objetos MongoDB para Node.js.
+- Dotenv: Módulo que carga variables de entorno desde un archivo .env en process.env.
+- Cors: Middleware de Express para habilitar el control de acceso HTTP.
+- Morgan: Middleware de registro de solicitudes HTTP para Node.js.
+- Nodemon: Herramienta que ayuda a desarrollar aplicaciones basadas en Node.js al reiniciar automáticamente la aplicación cuando se detectan cambios en el directorio.
+- Bcryptjs: Biblioteca para el hash de contraseñas.
+- Express-session: Middleware de Express para el manejo de sesiones.
