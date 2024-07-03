@@ -46,7 +46,14 @@ const asambleaSchema = new mongoose.Schema({
     activa: {
         type: Boolean,
         default: true
-    }
+    },
+
+    //no reequerido, porque de no ser resoltuiva, pero despues se puede agregar igualmente si es que fuese resolutiva.
+    votacion: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Form',
+                 
+      }
 }, {
     versionKey: false,
     timestamps: {
