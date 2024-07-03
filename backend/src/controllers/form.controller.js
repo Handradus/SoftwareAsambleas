@@ -5,9 +5,15 @@ export async function createForm (req,res){
     try {
         const { nombre, consulta, opciones } = req.body;
         const asamblea = await Asamblea.findOne({ activa: true });
+        const formulario = await Form.findOne({ activa: true });
         if (!asamblea) {
             return res.status(404).json({
                 message: "No hay una asamblea activa en este momento"
+            });
+        }
+        if (formulario) {
+            return res.status(404).json({
+                message: "Ya hay una votacion activa en este momento"
             });
         }
         if (!opciones || opciones.length === 0) {
@@ -97,3 +103,5 @@ export async function deleteForm (req,res){
         res.status(500).json({message: error.message});
     }
 }
+
+// añadir cerrar formulario
