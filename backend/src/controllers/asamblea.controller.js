@@ -147,5 +147,3 @@ export async function asambleasActivas( req,res) {
 
 
 
-
-
