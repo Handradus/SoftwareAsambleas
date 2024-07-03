@@ -15,7 +15,7 @@ const formSchema = new mongoose.Schema({
     nombre:{
         type: String,
         required : true,
-        unique : true
+        
 
     },
     consulta: {
@@ -24,8 +24,13 @@ const formSchema = new mongoose.Schema({
         unique : false
     },
     opciones: [opcionesSchema],
+
+    asamblea: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Asamblea',
+      required: true
        
-    
+    }
 
 },
 {
