@@ -30,7 +30,12 @@ const formSchema = new mongoose.Schema({
       ref: 'Asamblea',
       required: true
        
-    }
+    },
+    activa: {
+      type: Boolean,
+      default: true
+  },
+
 
 },
 {

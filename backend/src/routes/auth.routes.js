@@ -10,7 +10,7 @@ import { login, register, profile, logout } from "../controllers/auth.controller
 // Se realiza una instancia de express
 const router = express.Router();
 
-// Petición de tipo post para la ruta del login :3000/api/user/login
+// Petición de tipo post para la ruta del login :3000/api/auth/login
 router.post("/login", login);
 // Petición de tipo post para la ruta del register
 router.post("/register", register);
