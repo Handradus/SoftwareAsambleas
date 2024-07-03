@@ -1,13 +1,25 @@
 import Form from '../models/form.model.js';
+import Asamblea from '../models/asamblea.model.js';
 
 export async function createForm (req,res){
     try {
         const { nombre, consulta, opciones } = req.body;
+        const asamblea = await Asamblea.findOne({ activa: true });
+        if (!asamblea) {
+            return res.status(404).json({
+                message: "No hay una asamblea activa en este momento"
+            });
+        }
         if (!opciones || opciones.length === 0) {
             return res.status(400).json({ message: "Al menos 2 opciones son requeridas." });
           }
-        const newForm = new Form({ nombre, consulta, opciones });
+
+          //sin aamlbea._id guarda mas info? innnecesaria?
+        const newForm = new Form({ nombre, consulta, opciones, asamblea: asamblea._id });
         await newForm.save();
+
+        asamblea.votacion = newForm._id;
+        await asamblea.save();
 
         res.status(201).json({
             message: "Formulario creado exitosamente",
