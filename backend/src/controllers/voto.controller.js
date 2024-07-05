@@ -68,3 +68,40 @@ export async function emitirVoto(req, res) {
             return res.status(500).json({ message: 'Error al registrar el voto', error });
         }
     };
+
+    export async function cerrarVotacion(req, res) {
+        try {
+            console.log("Buscando asamblea activa...");
+            let asamblea = await Asamblea.findOne({ activa: true });
+            if (!asamblea) {
+                return res.status(404).json({
+                    message: "No hay una asamblea activa en este momento"
+                });
+            }
+    
+            console.log("Asamblea activa encontrada: ", asamblea);
+    
+            const idForm = asamblea.votacion;
+            if (!idForm) {
+                return res.status(404).json({ message: 'Formulario no encontrado' });
+            }
+    
+            console.log("Actualizando formulario con ID: ", idForm);
+    
+            // Actualizar el formulario directamente
+            const result = await Form.updateOne({ _id: idForm }, { activa: false });
+            if (result.nModified === 0) {
+                return res.status(404).json({ message: 'Formulario no encontrado o no actualizado' });
+            }
+    
+            console.log("Formulario actualizado correctamente");
+    
+            const updatedForm = await Form.findById(idForm);
+            console.log("Formulario después de actualizar: ", updatedForm);
+    
+            res.status(200).json({ message: 'Votación cerrada exitosamente' });
+        } catch (error) {
+            console.error("Error al cerrar la votación: ", error);
+            res.status(500).json({ message: 'Error al cerrar la votación', error });
+        }
+    }
