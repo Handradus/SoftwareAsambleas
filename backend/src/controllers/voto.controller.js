@@ -85,6 +85,11 @@ export async function emitirVoto(req, res) {
             if (!idForm) {
                 return res.status(404).json({ message: 'Formulario no encontrado' });
             }
+
+            const busqueda = await Form.findOne({ _id: idForm });
+            if (busqueda.activa === false) {
+                return res.status(400).json({ message: 'Votación ya cerrada' });
+            }
     
             console.log("Actualizando formulario con ID: ", idForm);
     
