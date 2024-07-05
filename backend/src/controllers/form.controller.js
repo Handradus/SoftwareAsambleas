@@ -40,29 +40,21 @@ export async function createForm (req,res){
 
 }
 
-export async function getForm (req,res){
+export async function mostrarVotacion (req, res) {
     try {
-        const id = req.query.nombre;
-        const form = await Form.findOne({nombre : id});
+        const { votacionId } = req.params;
 
-        if(!form){
-            return res.status(404).json({
-                message: "Formulario no encontrado",
-                data: null
-            });
-
+        // Obtener el formulario de votación desde la base de datos
+        const form = await Form.findById(votacionId);
+        if (!form) {
+            return res.status(404).json({ message: 'Votación no encontrada' });
         }
-        res.status(200).json({
-            message: "Formulario encontrado correctamente",
-            data: form
-        })
 
-
+        res.status(200).json(form);
     } catch (error) {
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: 'Error al obtener la votación', error });
     }
-    
-}
+};
 
 export async function updateForm (req,res){
     try {
