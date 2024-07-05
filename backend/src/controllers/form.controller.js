@@ -12,7 +12,7 @@ export async function createForm (req,res){
             });
         }
         let numeroOP= opciones.length;
-        opciones.numeroOp=numeroOP;
+        form.numeroOp=numeroOP;
         if (formulario==false) {
             return res.status(404).json({
                 message: "Ya hay una votacion activa en este momento"
