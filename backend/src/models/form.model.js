@@ -9,6 +9,11 @@ const opcionesSchema = new mongoose.Schema({
       type: Number,
       default: 0,
     },
+    numeroOp: {
+      type: Number,
+      default: 0,
+      required: false,
+    }
   });
 
 const formSchema = new mongoose.Schema({
