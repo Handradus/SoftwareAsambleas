@@ -8,12 +8,8 @@ const opcionesSchema = new mongoose.Schema({
     votos: {
       type: Number,
       default: 0,
-    },
-    numeroOp: {
-      type: Number,
-      default: 0,
-      required: false,
     }
+    
   });
 
 const formSchema = new mongoose.Schema({
@@ -40,6 +36,11 @@ const formSchema = new mongoose.Schema({
       type: Boolean,
       default: true
   },
+  numeroOp: {
+    type: Number,
+    default: 0,
+    required: false,
+  }
 
 
 },
