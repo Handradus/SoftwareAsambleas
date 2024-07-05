@@ -13,7 +13,7 @@ export async function createForm (req,res){
         }
         let numeroOP= opciones.length;
         opciones.numeroOp=numeroOP;
-        if (formulario) {n
+        if (formulario==false) {
             return res.status(404).json({
                 message: "Ya hay una votacion activa en este momento"
             });
@@ -42,10 +42,19 @@ export async function createForm (req,res){
 
 export async function mostrarVotacion (req, res) {
     try {
-        const { votacionId } = req.params;
+        
+
+        let asamblea = await Asamblea.findOne({ activa: true });
+        if (!asamblea) {
+            return res.status(404).json({
+                message: "No hay una asamblea activa en este momento"
+            });
+        }
+
+        const idForm = asamblea.votacion;
 
         // Obtener el formulario de votación desde la base de datos
-        const form = await Form.findById(votacionId);
+        const form = await Form.findById(idForm);
         if (!form) {
             return res.status(404).json({ message: 'Votación no encontrada' });
         }
@@ -54,6 +63,7 @@ export async function mostrarVotacion (req, res) {
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener la votación', error });
     }
+    
 };
 
 export async function updateForm (req,res){
