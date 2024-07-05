@@ -53,7 +53,7 @@ export async function emitirVoto(req, res) {
             }
     
             // Incrementar el contador de votos en la opción elegida
-            form.opciones[elegido].votos++;
+            form.opciones[elegido-1].votos++;
     
             // Guardar los cambios en la base de datos
             await form.save();
