@@ -5,12 +5,13 @@ import { Router } from "express";
 /** Controlador de usuarios */
 import {getUser, getUsers, updateUser, deleteUser} from "../controllers/user.controller.js";
 //Importa lo de crear formulario 
-import { createForm,getForm,updateForm,deleteForm } from "../controllers/form.controller.js";
+import { createForm,updateForm,deleteForm, mostrarVotacion } from "../controllers/form.controller.js";
 //asamblea 
 import { crearAsamblea, asambleasActivas,obtenerAsamblea,obtenerAsambleaPorFecha,cerrarAsambleaID,cerrarAsambleaFecha } from '../controllers/asamblea.controller.js';
 /** Middlewares de autorización */
 import { isAdmin } from "../middlewares/auth.middleware.js";
 import { firmarLista } from "../controllers/lista.controller.js";
+import { emitirVoto } from "../controllers/voto.controller.js";
 
 // Se realiza una instancia de express
 const router = Router();
@@ -24,7 +25,7 @@ router.delete("/", isAdmin, deleteUser);
 
 //ruta para formularios, ´pueden cambiar si es que quiero que se accedan desde la asamblea
 router.post('/formulario',isAdmin,createForm);
-router.get('/form',getForm);
+router.get('/Mostrar votacion',mostrarVotacion);
 
 router.put('/form:id',isAdmin,updateForm);
 
@@ -45,4 +46,7 @@ router.post('/cerrarAsamblea', isAdmin, cerrarAsambleaID);
 router.post('/cerrarAsambleaFecha/:fecha', isAdmin, cerrarAsambleaFecha);
 
 router.get('/asambleasActivas', isAdmin, asambleasActivas);
+
+router.post ('/emitirVoto', emitirVoto);
+
 export default router;
