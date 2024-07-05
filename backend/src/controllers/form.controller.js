@@ -11,7 +11,9 @@ export async function createForm (req,res){
                 message: "No hay una asamblea activa en este momento"
             });
         }
-        if (formulario) {
+        let numeroOP= opciones.length;
+        opciones.numeroOp=numeroOP;
+        if (formulario) {n
             return res.status(404).json({
                 message: "Ya hay una votacion activa en este momento"
             });
