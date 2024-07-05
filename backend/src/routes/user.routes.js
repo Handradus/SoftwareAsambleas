@@ -11,7 +11,7 @@ import { crearAsamblea, asambleasActivas,obtenerAsamblea,obtenerAsambleaPorFecha
 /** Middlewares de autorización */
 import { isAdmin } from "../middlewares/auth.middleware.js";
 import { firmarLista } from "../controllers/lista.controller.js";
-import { emitirVoto } from "../controllers/voto.controller.js";
+import { emitirVoto, cerrarVotacion } from "../controllers/voto.controller.js";
 
 // Se realiza una instancia de express
 const router = Router();
@@ -50,5 +50,6 @@ router.get('/asambleasActivas', isAdmin, asambleasActivas);
 //rutas de votacion
 router.post ('/emitirVoto', emitirVoto);
 router.get('/mostrarVotacion',mostrarVotacion);
+router.post('/cerrarVotacion',  isAdmin, cerrarVotacion);
 
 export default router;
