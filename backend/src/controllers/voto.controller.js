@@ -1,20 +1,23 @@
 import Asamblea from"../models/asamblea.model.js";
 import Form from "../models/form.model.js";
-import { createForm,mostrarVotacion,updateForm,deleteForm } from "../controllers/form.controller.js";
-//permite importar formulario por id
+
 
 export async function emitirVoto(req, res) {
     
         try {
+
+            // recibe opcion desde el cuerpo
             const { elegido } = req.body;
-            
+
+            //verifico si hay un usuario logeado
+
             if (!req.session.user) {
                 return res.status(401).json({ message: 'Usuario no autenticado' });
             }
     
             const rut = req.session.user.rut;
               
-            // Buscar la asamblea por ID
+            // Buscar la asamblea por estado activa
             const asamblea = await Asamblea.findOne({ activa: true });
             if (!asamblea) {
                 return res.status(404).json({ message: 'Asamblea no encontrada' });
