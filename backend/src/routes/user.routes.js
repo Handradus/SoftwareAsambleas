@@ -25,7 +25,7 @@ router.delete("/", isAdmin, deleteUser);
 
 //ruta para formularios, ´pueden cambiar si es que quiero que se accedan desde la asamblea
 router.post('/formulario',isAdmin,createForm);
-router.get('/Mostrar votacion',mostrarVotacion);
+
 
 router.put('/form:id',isAdmin,updateForm);
 
@@ -47,6 +47,8 @@ router.post('/cerrarAsambleaFecha/:fecha', isAdmin, cerrarAsambleaFecha);
 
 router.get('/asambleasActivas', isAdmin, asambleasActivas);
 
+//rutas de votacion
 router.post ('/emitirVoto', emitirVoto);
+router.get('/mostrarVotacion',mostrarVotacion);
 
 export default router;
