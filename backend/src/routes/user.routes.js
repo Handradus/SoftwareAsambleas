@@ -4,6 +4,7 @@ import { Router } from "express";
 
 /** Controlador de usuarios */
 import {getUser, getUsers, updateUser, deleteUser} from "../controllers/user.controller.js";
+import { getCorreos,enviarCorreos } from "../controllers/correos.controller.js";
 //Importa lo de crear formulario 
 import { createForm,updateForm,deleteForm, mostrarVotacion } from "../controllers/form.controller.js";
 //asamblea 
@@ -21,6 +22,11 @@ router.get("/", isAdmin, getUsers);
 router.get("/1", isAdmin, getUser);
 router.put("/", isAdmin, updateUser);
 router.delete("/", isAdmin, deleteUser);
+
+router.get("/correos", isAdmin, getCorreos);
+router.get("/enviarCorreos", isAdmin, enviarCorreos);
+
+
 
 
 //ruta para formularios, ´pueden cambiar si es que quiero que se accedan desde la asamblea
