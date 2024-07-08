@@ -8,7 +8,8 @@ import { getCorreos,enviarCorreos } from "../controllers/correos.controller.js";
 //Importa lo de crear formulario 
 import { createForm,updateForm,deleteForm, mostrarVotacion } from "../controllers/form.controller.js";
 //asamblea 
-import { crearAsamblea, asambleasActivas,obtenerAsamblea,obtenerAsambleaPorFecha,cerrarAsambleaID,cerrarAsambleaFecha } from '../controllers/asamblea.controller.js';
+import { crearAsamblea, asambleasActivas, obtenerAsamblea, obtenerAsambleaPorFecha, cerrarAsambleaID,agregarAnotacion, registrarMinuta }
+from '../controllers/asamblea.controller.js';
 /** Middlewares de autorización */
 import { isAdmin } from "../middlewares/auth.middleware.js";
 import { firmarLista } from "../controllers/lista.controller.js";
@@ -44,14 +45,13 @@ router.post('/Lista',firmarLista);
 
 //rutas asamblea
 router.post('/crearAsamblea', isAdmin, crearAsamblea);
-
-/// aca ingreso a a la asamblea, despues de esto creo votacion
 router.get('/obtenerAsamblea/:id', obtenerAsamblea);
 router.get('/obtenerAsambleaPorFecha/:fecha', obtenerAsambleaPorFecha);
 router.post('/cerrarAsamblea', isAdmin, cerrarAsambleaID);
-router.post('/cerrarAsambleaFecha/:fecha', isAdmin, cerrarAsambleaFecha);
-
 router.get('/asambleasActivas', isAdmin, asambleasActivas);
+router.post('/agregarAnotacion', isAdmin, agregarAnotacion);
+router.post('/registrarMinuta', isAdmin, registrarMinuta);
+
 
 //rutas de votacion
 router.post ('/emitirVoto', emitirVoto);
