@@ -33,7 +33,7 @@ export async function emitirVoto(req, res) {
         // Obtiene el ID del formulario de votación desde la asamblea
         const idForm = asamblea.votacion;
         if (!idForm) {
-            return res.status(404).json({ message: 'Formulario no encontrado' });
+            return res.status(404).json({ message: 'Formulario no encontrado' }); 
         }
 
         // Busca el formulario de votación en la base de datos usando el ID obtenido
