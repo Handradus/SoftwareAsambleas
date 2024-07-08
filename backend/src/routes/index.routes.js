@@ -16,6 +16,9 @@ router.use("/user",  userRoutes);
 // Define las rutas para la autenticación /api/auth
 router.use("/auth", authRoutes);
 
+router.use("/directivas",directivaRoutes);
+
+router.use("/vocalias",vocaliaRoutes);
 
 
 export default router;
