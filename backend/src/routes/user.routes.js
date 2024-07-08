@@ -44,15 +44,15 @@ router.get('/mostrarVotacion', mostrarVotacion);
 router.post('/cerrarVotacion', isAdmin, cerrarVotacion);
 
 //Ruta de directiva
-router.post('/',isAdmin, createDirectiva);
-router.get('/', getDirectiva);
-router.put('/:id', isAdmin,updateDirectiva);
-router.delete('/:id', isAdmin,deleteDirectiva);
+router.post('/crearDirectiva',isAdmin, createDirectiva);
+router.get('/getDirectiva', getDirectiva);
+router.put('/directiva:id', isAdmin,updateDirectiva);
+router.delete('/directiva:id', isAdmin,deleteDirectiva);
 
 //Ruta de vocalia
-router.post('/',isAdmin, createVocalia);
-router.get('/', getVocalias);
-router.put('/:id',isAdmin, updateVocalia);
-router.delete('/:id',isAdmin, deleteVocalia);
+router.post('/crearVocalia',isAdmin, createVocalia);
+router.get('/getVocalia', getVocalias);
+router.put('/vocalia:id',isAdmin, updateVocalia);
+router.delete('/borrar:id',isAdmin, deleteVocalia);
 
 export default router;
