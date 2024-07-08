@@ -7,6 +7,9 @@ import { crearAsamblea, asambleasActivas, obtenerAsamblea, obtenerAsambleaPorFec
 import { isAdmin } from "../middlewares/auth.middleware.js";
 import { firmarLista } from "../controllers/lista.controller.js";
 import { emitirVoto, cerrarVotacion } from "../controllers/voto.controller.js";
+import { createDirectiva, getDirectiva, updateDirectiva, deleteDirectiva } from '../controllers/directiva.controller.js';
+import { createVocalia, getVocalias, updateVocalia, deleteVocalia } from '../controllers/vocalia.controller.js';
+
 
 const router = Router();
 
@@ -39,5 +42,17 @@ router.post('/agregarAnotacion', isAdmin, agregarAnotacion);
 router.post('/emitirVoto', emitirVoto);
 router.get('/mostrarVotacion', mostrarVotacion);
 router.post('/cerrarVotacion', isAdmin, cerrarVotacion);
+
+//Ruta de directiva
+router.post('/',isAdmin, createDirectiva);
+router.get('/', getDirectiva);
+router.put('/:id', isAdmin,updateDirectiva);
+router.delete('/:id', isAdmin,deleteDirectiva);
+
+//Ruta de vocalia
+router.post('/',isAdmin, createVocalia);
+router.get('/', getVocalias);
+router.put('/:id',isAdmin, updateVocalia);
+router.delete('/:id',isAdmin, deleteVocalia);
 
 export default router;
