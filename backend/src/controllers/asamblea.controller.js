@@ -1,10 +1,8 @@
 import Asamblea from '../models/asamblea.model.js';
 
 // Crear una nueva asamblea
-//fecha sera unica
 export async function crearAsamblea(req, res) {
     try {
-
         const asambleaActiva = await Asamblea.findOne({ activa: true });
         if (asambleaActiva) {
             return res.status(400).json({
@@ -46,6 +44,7 @@ export async function obtenerAsamblea(req, res) {
     }
 }
 
+// Obtener asamblea por fecha
 export async function obtenerAsambleaPorFecha(req, res) {
     try {
         const { fecha } = req.params;
@@ -67,12 +66,20 @@ export async function obtenerAsambleaPorFecha(req, res) {
     }
 }
 
-
-
-// cerrar asamblea por id
+// Cerrar asamblea por ID
 export async function cerrarAsambleaID(req, res) {
     try {
         const { asambleaId } = req.body; // ID de la asamblea que se va a cerrar
+
+        // Log para verificar el estado de req.user
+        console.log("Estado de req.user:", req.user);
+
+        // Verificar que el usuario es un administrador
+        if (!req.user || !req.user.isAdmin) {
+            return res.status(403).json({
+                message: "Acceso denegado: solo los administradores pueden cerrar una asamblea."
+            });
+        }
 
         // Buscar la asamblea
         let asamblea = await Asamblea.findById(asambleaId);
@@ -84,6 +91,8 @@ export async function cerrarAsambleaID(req, res) {
 
         // Actualizar el estado de la asamblea a inactiva
         asamblea.activa = false;
+        asamblea.fechaCierre = new Date();
+        asamblea.cerradaPor = req.user.id; // Asumiendo que el ID del usuario está en req.user
         await asamblea.save();
 
         res.status(200).json({
@@ -91,42 +100,47 @@ export async function cerrarAsambleaID(req, res) {
             data: asamblea
         });
     } catch (error) {
-        console.log("Error en asamblea.controller.js -> cerrarAsamblea():", error);
+        console.log("Error en asamblea.controller.js -> cerrarAsambleaID():", error);
         res.status(500).json({ message: "Error interno del servidor" });
     }
 }
 
-// cerrar asamblea por fecha
-export async function cerrarAsambleaFecha(req, res) {
+// Obtener asambleas activas
+export async function asambleasActivas(req, res) {
     try {
-        const { fecha } = req.params; // Obtener la fecha de los parámetros de la URL
-        const asamblea = await Asamblea.findOne({ fecha: new Date(fecha) });
-
-        // Verificar si la asamblea fue encontrada
+        let asamblea = await Asamblea.findOne({ activa: true }).lean();
         if (!asamblea) {
             return res.status(404).json({
-                message: "Asamblea no encontrada"
+                message: "No hay una asamblea activa en este momento"
             });
         }
 
-        // Actualizar el estado de la asamblea a inactiva
-        asamblea.activa = false;
-        await asamblea.save();
+        console.log('Asamblea activa encontrada:', asamblea);
 
         res.status(200).json({
-            message: "Asamblea cerrada exitosamente",
+            message: "Asamblea activa encontrada",
             data: asamblea
         });
     } catch (error) {
-        console.log("Error en asamblea.controller.js -> cerrarAsambleaFecha():", error);
+        console.log("Error en asamblea.controller.js -> asambleasActivas():", error);
         res.status(500).json({ message: "Error interno del servidor" });
     }
 }
 
 
-
-export async function asambleasActivas( req,res) {
+// Agregar anotaciones a la asamblea activa
+export async function agregarAnotacion(req, res) {
     try {
+        const { anotacion } = req.body;
+
+        // Verificar que el usuario es un administrador
+        if (!req.user || !req.user.isAdmin) {
+            return res.status(403).json({
+                message: "Acceso denegado: solo los administradores pueden agregar anotaciones."
+            });
+        }
+
+        // Buscar la asamblea activa
         let asamblea = await Asamblea.findOne({ activa: true });
         if (!asamblea) {
             return res.status(404).json({
@@ -134,16 +148,50 @@ export async function asambleasActivas( req,res) {
             });
         }
 
+        // Agregar la anotación
+        asamblea.anotaciones.push(anotacion);
+        await asamblea.save();
 
         res.status(200).json({
-            message: "Asambleas encontradas",
+            message: "Anotación agregada exitosamente",
             data: asamblea
         });
     } catch (error) {
-        console.log("Error en asamblea.controller.js -> cerrarAsambleaFecha():", error);
+        console.log("Error en asamblea.controller.js -> agregarAnotacion():", error);
         res.status(500).json({ message: "Error interno del servidor" });
     }
 }
 
+export async function registrarMinuta(req, res) {
+    try {
+        const { minuta } = req.body;
 
+        // Verificar que el usuario es un administrador
+        if (!req.user || !req.user.isAdmin) {
+            return res.status(403).json({
+                message: "Acceso denegado: solo los administradores pueden registrar la minuta."
+            });
+        }
 
+        // Actualizar la minuta de la asamblea activa
+        let asamblea = await Asamblea.findOneAndUpdate(
+            { activa: true },
+            { $set: { minuta: minuta } },
+            { new: true }
+        );
+
+        if (!asamblea) {
+            return res.status(404).json({
+                message: "No hay una asamblea activa en este momento"
+            });
+        }
+
+        res.status(200).json({
+            message: "Minuta registrada exitosamente",
+            data: asamblea
+        });
+    } catch (error) {
+        console.log("Error en asamblea.controller.js -> registrarMinuta():", error);
+        res.status(500).json({ message: "Error interno del servidor" });
+    }
+}
