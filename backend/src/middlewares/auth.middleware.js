@@ -10,13 +10,15 @@ async function isAdmin(req, res, next) {
     if (!req.session.user) {
       return res.status(401).json({ message: 'No estás autenticado' });
     }
-    
+
     // Obtiene el rol del usuario de la sesión
     const userRole = req.session.user.rolName;
 
     // Verifica si el usuario tiene el rol de administrador
     if (userRole === 'administrador') {
       // El usuario tiene el rol adecuado, continua con la siguiente función de middleware
+      req.user = req.session.user; // Asegúrate de asignar el usuario a req.user
+      req.user.isAdmin = true; // Asegúrate de que req.user.isAdmin sea true
       next();
       return;
     } else {

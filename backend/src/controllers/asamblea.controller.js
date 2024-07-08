@@ -127,7 +127,6 @@ export async function asambleasActivas(req, res) {
     }
 }
 
-
 // Agregar anotaciones a la asamblea activa
 export async function agregarAnotacion(req, res) {
     try {
@@ -158,40 +157,6 @@ export async function agregarAnotacion(req, res) {
         });
     } catch (error) {
         console.log("Error en asamblea.controller.js -> agregarAnotacion():", error);
-        res.status(500).json({ message: "Error interno del servidor" });
-    }
-}
-
-export async function registrarMinuta(req, res) {
-    try {
-        const { minuta } = req.body;
-
-        // Verificar que el usuario es un administrador
-        if (!req.user || !req.user.isAdmin) {
-            return res.status(403).json({
-                message: "Acceso denegado: solo los administradores pueden registrar la minuta."
-            });
-        }
-
-        // Actualizar la minuta de la asamblea activa
-        let asamblea = await Asamblea.findOneAndUpdate(
-            { activa: true },
-            { $set: { minuta: minuta } },
-            { new: true }
-        );
-
-        if (!asamblea) {
-            return res.status(404).json({
-                message: "No hay una asamblea activa en este momento"
-            });
-        }
-
-        res.status(200).json({
-            message: "Minuta registrada exitosamente",
-            data: asamblea
-        });
-    } catch (error) {
-        console.log("Error en asamblea.controller.js -> registrarMinuta():", error);
         res.status(500).json({ message: "Error interno del servidor" });
     }
 }

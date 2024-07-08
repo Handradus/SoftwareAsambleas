@@ -4,7 +4,6 @@ const alumnoSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
-        
     },
     rut: {
         type: String,
@@ -60,10 +59,6 @@ const asambleaSchema = new mongoose.Schema({
     anotaciones: {
         type: [String],
         default: []
-    },
-    minuta: {
-        type: String,
-        default: ''
     }
 }, {
     versionKey: false,
