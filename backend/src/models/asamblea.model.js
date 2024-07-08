@@ -42,18 +42,29 @@ const asambleaSchema = new mongoose.Schema({
         required: true
     },
     lista: listaSchema,
-    //banderita para saber cual es la asamblea activa
     activa: {
         type: Boolean,
         default: true
     },
-
-    //no reequerido, porque de no ser resoltuiva, pero despues se puede agregar igualmente si es que fuese resolutiva.
     votacion: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Form',
-                 
-      }
+        ref: 'Form'
+    },
+    fechaCierre: {
+        type: Date
+    },
+    cerradaPor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    anotaciones: {
+        type: [String],
+        default: []
+    },
+    minuta: {
+        type: String,
+        default: ''
+    }
 }, {
     versionKey: false,
     timestamps: {
