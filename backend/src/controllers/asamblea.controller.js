@@ -104,7 +104,43 @@ export async function cerrarAsambleaID(req, res) {
         res.status(500).json({ message: "Error interno del servidor" });
     }
 }
+//Cerrar asamblea activa 
+// Cerrar asamblea por ID
+export async function cerrarAsambleaActiva(req, res) {
+    try {
+           // Log para verificar el estado de req.user
+        console.log("Estado de req.user:", req.user);
 
+        // Verificar que el usuario es un administrador
+        if (!req.user || !req.user.isAdmin) {
+            return res.status(403).json({
+                message: "Acceso denegado: solo los administradores pueden cerrar una asamblea."
+            });
+        }
+
+        let asamblea = await Asamblea.findOne({ activa: true });
+        if (!asamblea) {
+            return res.status(404).json({
+                message: "No hay una asamblea activa en este momento"
+            });
+        }
+
+           
+        // Actualizar el estado de la asamblea a inactiva
+        asamblea.activa = false;
+        asamblea.fechaCierre = new Date();
+        asamblea.cerradaPor = req.user.id; // Asumiendo que el ID del usuario está en req.user
+        await asamblea.save();
+
+        res.status(200).json({
+            message: "Asamblea cerrada exitosamente",
+            data: asamblea
+        });
+    } catch (error) {
+        console.log("Error en asamblea.controller.js -> cerrarAsambleaID():", error);
+        res.status(500).json({ message: "Error interno del servidor" });
+    }
+}
 // Obtener asambleas activas
 export async function asambleasActivas(req, res) {
     try {
