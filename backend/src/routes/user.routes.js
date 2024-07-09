@@ -3,7 +3,7 @@ import { Router } from "express";
 import { getUser, getUsers, updateUser, deleteUser } from "../controllers/user.controller.js";
 import { getCorreos, enviarCorreos } from "../controllers/correos.controller.js";
 import { createForm, updateForm, deleteForm, mostrarVotacion } from "../controllers/form.controller.js";
-import { crearAsamblea, asambleasActivas, obtenerAsamblea, obtenerAsambleaPorFecha, cerrarAsambleaID, agregarAnotacion } from '../controllers/asamblea.controller.js';
+import { crearAsamblea, asambleasActivas, obtenerAsamblea, obtenerAsambleaPorFecha, cerrarAsambleaID,cerrarAsambleaActiva, agregarAnotacion } from '../controllers/asamblea.controller.js';
 import { isAdmin } from "../middlewares/auth.middleware.js";
 import { firmarLista } from "../controllers/lista.controller.js";
 import { emitirVoto, cerrarVotacion } from "../controllers/voto.controller.js";
@@ -35,6 +35,7 @@ router.post('/crearAsamblea', isAdmin, crearAsamblea);
 router.get('/obtenerAsamblea/:id', obtenerAsamblea);
 router.get('/obtenerAsambleaPorFecha/:fecha', obtenerAsambleaPorFecha);
 router.post('/cerrarAsamblea', isAdmin, cerrarAsambleaID);
+router.post('/cerrarAsambleaActiva', isAdmin, cerrarAsambleaActiva);
 router.get('/asambleasActivas', isAdmin, asambleasActivas);
 router.post('/agregarAnotacion', isAdmin, agregarAnotacion);
 
