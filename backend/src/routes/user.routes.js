@@ -9,7 +9,7 @@ import { firmarLista } from "../controllers/lista.controller.js";
 import { emitirVoto, cerrarVotacion } from "../controllers/voto.controller.js";
 import { createDirectiva, getDirectiva, updateDirectiva, deleteDirectiva } from '../controllers/directiva.controller.js';
 import { createVocalia, getVocalias, updateVocalia, deleteVocalia } from '../controllers/vocalia.controller.js';
-
+import { obtenerActa } from "../controllers/acta.controller.js";
 
 const router = Router();
 
@@ -48,7 +48,8 @@ router.post('/crearDirectiva',isAdmin, createDirectiva);
 router.get('/getDirectiva', getDirectiva);
 router.put('/directiva:id', isAdmin,updateDirectiva);
 router.delete('/directiva:id', isAdmin,deleteDirectiva);
-
+//obtener acta y guardarla
+router.get("/acta", isAdmin, obtenerActa);
 //Ruta de vocalia
 router.post('/crearVocalia',isAdmin, createVocalia);
 router.get('/getVocalia', getVocalias);
