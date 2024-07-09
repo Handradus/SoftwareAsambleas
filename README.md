@@ -1,11 +1,12 @@
 > [!IMPORTANT]
 > No se que numero de grupo somos
->Integrantes
+
 
 
 # Software para Asambleas
 
-El siguiente software busca compilar las actividades normalmente realizadas en una Asamblea estudiantil para un acceso facil y manejar los documentos generados de manera eficaz y segura.
+El siguiente software busca compilar las actividades normalmente realizadas en una Asamblea estudiantil para un acceso facil, manejar los documentos generados de manera eficaz y segura.
+Las funciones presentes son: Manejo de asambleas, votaciones, resultados, listas, visualizacion de directiva vigente, revision de actas.
 
 ## Integrantes 
 >Humberto Andrades Daza
