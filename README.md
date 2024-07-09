@@ -8,14 +8,14 @@
 El siguiente software busca compilar las actividades normalmente realizadas en una Asamblea estudiantil para un acceso facil y manejar los documentos generados de manera eficaz y segura.
 
 ## Integrantes 
--Humberto Andrades Daza
--Benjamin Carrasco
--Hector Diaz
--Diego Guzman
--Lucas Mendez
+>Humberto Andrades Daza
+>Benjamin Carrasco
+>Hector Diaz
+>Diego Guzman
+>Lucas Mendez
 
 ## Dependencias utilizadas 🛠️
-
+-Nodemailer : Herramineta para manejo de envio de correos desde plataforma
 - Express: Framework de aplicación web para Node.js.
 - Mongoose: Biblioteca de modelado de objetos MongoDB para Node.js.
 - Dotenv: Módulo que carga variables de entorno desde un archivo .env en process.env.
