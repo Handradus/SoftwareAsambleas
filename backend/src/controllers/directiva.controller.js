@@ -1,10 +1,25 @@
 
 import Directiva from '../models/directiva.model.js';
+import User from '../models/user.model.js';
 
 export const createDirectiva = async (req, res) => {
   try {
     const { nombre, cargo, email } = req.body;
-    const newDirectiva = new Directiva({ nombre, cargo, email });
+
+    const usuario = await User.findOne({ email });
+    if (!usuario) {
+      return res.status(400).json({ message: 'Usuario no registrado' });
+    }
+
+    const cargoLowercase = cargo.toLowerCase();
+    const existeCargo = await Directiva.findOne({ cargo: cargoLowercase });
+    if (existeCargo) {
+      return res.status(400).json({ message: `Ya existe un ${cargo} registrado` });
+    }
+
+
+
+    const newDirectiva = new Directiva({ nombre, cargo: cargoLowercase , email });
 
     await newDirectiva.save();
 
