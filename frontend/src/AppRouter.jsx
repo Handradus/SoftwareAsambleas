@@ -7,6 +7,7 @@ import Error404 from './pages/Error404';
 import EditUser from './pages/EditUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import Users from './pages/Users';
+import CreateAsamblea from './pages/CreateAsamblea';
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,14 @@ const AppRouter = () => {
             <Home />
           </ProtectedRoute>
         } 
+      />
+      <Route 
+        path="/create-asamblea" 
+        element={
+          <ProtectedRoute>
+            <CreateAsamblea />
+          </ProtectedRoute>
+        }
       />
       <Route 
         path="/users" 
