@@ -90,18 +90,36 @@ export async function updateForm (req,res){
 
 export async function deleteForm (req,res){
     try {
-        const id = req.params.id;
-        const formDeleted = await Form.findByIdAndDelete(id);
+        ///buscar asanmblea activa y borrart el formulario que tenga asociado
+        let asamblea = await Asamblea.findOne({ activa: true });
 
-        if (!formDeleted){
+        
+
+        if (!asamblea){
             return res.status(404).json({
-                message: "Formulario no encontrado",
+                message: "No hay asamblea Activa",
                 data: null
             });
         }
+            
+        const idForm=asamblea.votacion;
+        const formulario = await Form.findById(idForm);
+        
+        if (!formulario){
+            return res.status(404).json({
+                message: "No hay formulario activo",
+                data: null
+            });
+        }
+
+        await Form.findByIdAndDelete(idForm);
+        asamblea.votacion = null;
+        await asamblea.save();
+        
         res.status(200).json({
             message: "Formulario eliminado correctamente",
-            data: formDeleted
+            data: formulario
+            
         })
     } catch (error) {
         res.status(500).json({message: error.message});
