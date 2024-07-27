@@ -1,4 +1,5 @@
 import Asamblea from '../models/asamblea.model.js';
+import Form from '../models/form.model.js';
 
 // Crear una nueva asamblea
 export async function crearAsamblea(req, res) {
@@ -83,6 +84,16 @@ export async function cerrarAsambleaID(req, res) {
 
         // Buscar la asamblea
         let asamblea = await Asamblea.findById(asambleaId);
+
+        //linea para comprobar que la votacion este cerrada
+        const idvotacion=asamblea.votacion;
+        const votacion = await Form.findById(idvotacion);
+
+        if (votacion!= null && votacion.activa==true){
+            return res.status(404).json({
+                message: "Primero debes cerrar la votación"
+            });
+        }
         if (!asamblea) {
             return res.status(404).json({
                 message: "Asamblea no encontrada"
@@ -105,7 +116,7 @@ export async function cerrarAsambleaID(req, res) {
     }
 }
 //Cerrar asamblea activa 
-// Cerrar asamblea por ID
+
 export async function cerrarAsambleaActiva(req, res) {
     try {
            // Log para verificar el estado de req.user
@@ -119,15 +130,26 @@ export async function cerrarAsambleaActiva(req, res) {
         }
 
         let asamblea = await Asamblea.findOne({ activa: true });
+        //linea para comprobar que la votacion este cerrada
+        const idvotacion=asamblea.votacion;
+        const votacion = await Form.findById(idvotacion);
+
         if (!asamblea) {
             return res.status(404).json({
                 message: "No hay una asamblea activa en este momento"
             });
         }
 
-           
+        if (votacion!= null && votacion.activa==true){
+            return res.status(404).json({
+                message: "Primero debes cerrar la votación"
+            });
+        }
+     
         // Actualizar el estado de la asamblea a inactiva
         asamblea.activa = false;
+        
+        
         asamblea.fechaCierre = new Date();
         asamblea.cerradaPor = req.user.id; // Asumiendo que el ID del usuario está en req.user
         await asamblea.save();
