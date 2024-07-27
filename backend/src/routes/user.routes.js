@@ -25,7 +25,7 @@ router.get("/enviarCorreos", isAdmin, enviarCorreos);
 // Ruta para formularios
 router.post('/formulario', isAdmin, createForm);
 router.put('/form:id', isAdmin, updateForm);
-router.delete('/form:id', isAdmin, deleteForm);
+router.delete('/BorrarForm', isAdmin, deleteForm);
 
 // Ruta para ingresar usuario verificado a la lista de asistencia
 router.post('/Lista', firmarLista);
