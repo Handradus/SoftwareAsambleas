@@ -10,10 +10,10 @@ export async function PostAsambleas(data) {
 }
 
 export async function GetAsambleas() {
-	try {
-		const response = await axios.get('/user/asambleasActivas');
-		return response.data;
-	} catch (error) {
-		throw error.response?.data || error.message;
-	}
+    try {
+        const response = await axios.get('/user/asambleasActivas');
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
 }
