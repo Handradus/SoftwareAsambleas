@@ -8,6 +8,7 @@ import EditUser from './pages/EditUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import Users from './pages/Users';
 import CreateAsamblea from './pages/CreateAsamblea';
+import GetAsamblea from './pages/GetAsamblea';
 
 const AppRouter = () => {
   return (
@@ -29,6 +30,14 @@ const AppRouter = () => {
         element={
           <ProtectedRoute>
             <CreateAsamblea />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/get-asamblea"
+        element={
+          <ProtectedRoute>
+            <GetAsamblea />
           </ProtectedRoute>
         }
       />
