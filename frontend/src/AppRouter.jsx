@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Users from './pages/Users';
 import CreateAsamblea from './pages/CreateAsamblea';
 import GetAsamblea from './pages/GetAsamblea';
+import GetAsambleaID from './pages/GetAsambleaID';
 
 const AppRouter = () => {
   return (
@@ -38,6 +39,14 @@ const AppRouter = () => {
         element={
           <ProtectedRoute>
             <GetAsamblea />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/get-asamblea/:id"
+        element={
+          <ProtectedRoute>
+            <GetAsambleaID />
           </ProtectedRoute>
         }
       />

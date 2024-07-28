@@ -3,15 +3,14 @@ import Navbar from '../components/Navbar';
 import { GetAsambleas } from '../services/asambleas.service';
 
 const GetAsamblea = () => {
-    const [asamblea, setAsamblea] = useState(null);
+    const [asambleas, setAsambleas] = useState([]);
 
     useEffect(() => {
         const fetchAsambleas = async () => {
             try {
                 const asambleasData = await GetAsambleas();
-                console.log('Datos recibidos del backend:', asambleasData); //DEPURACION
-                setAsamblea(asambleasData.data); //guarda asamblea activa en el estado local
-                console.log('Asambleas obtenidas:', asambleasData);
+                console.log('Asambleas obtenidas:', asambleasData); // Verifica la respuesta aquí
+                setAsambleas(asambleasData.data ? [asambleasData.data] : []);
             } catch (error) {
                 console.error(error);
             }
@@ -24,12 +23,17 @@ const GetAsamblea = () => {
             <div className='main-container'>
                 <Navbar />
                 <h1>Asambleas Activas</h1>
-                {asamblea ? (
-                    <div>
-                        <p>Fecha: {asamblea.fecha}</p> 
-                        <p>Puntos: {asamblea.puntos.join(', ')}</p>
-                        <p>Resolutiva: {asamblea.resolutiva ? 'Sí' : 'No'}</p>
-                    </div>
+                {asambleas.length > 0 ? (
+                    <ul>
+                        {asambleas.map((asamblea) => (
+                            <li key={asamblea._id}>
+                                <p>ID: {asamblea._id}</p>
+                                <p>Fecha: {new Date(asamblea.fecha).toLocaleDateString()}</p>
+                                <p>Puntos: {asamblea.puntos.join(', ')}</p>
+                                <p>Resolutiva: {asamblea.resolutiva ? 'Sí' : 'No'}</p>
+                            </li>
+                        ))}
+                    </ul>
                 ) : (
                     <p>No hay asambleas activas en este momento.</p>
                 )}
