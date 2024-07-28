@@ -27,3 +27,12 @@ export async function GetAsambleaId(id) {
         throw error.response?.data || error.message;
     }
 }
+
+export async function DeleteAsambleaActiva() {
+    try {
+        const response = await axios.post('/user/cerrarAsambleaActiva');
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+}
