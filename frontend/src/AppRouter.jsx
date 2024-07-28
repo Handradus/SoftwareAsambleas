@@ -50,6 +50,22 @@ const AppRouter = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/crear-formulario"
+        element={
+          <ProtectedRoute>
+            <CreateFormulario />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/borrar-formulario"
+        element={
+          <ProtectedRoute>
+            <BorrarFormularioActivo />
+          </ProtectedRoute>
+        }
+      />
       <Route 
         path="/users" 
         element={
