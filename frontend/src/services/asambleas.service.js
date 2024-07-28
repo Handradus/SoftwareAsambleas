@@ -11,7 +11,7 @@ export async function PostAsambleas(data) {
 
 export async function GetAsambleas() {
     try {
-        const response = await axios.get('/user/asambleasActivas');
+        const response = await axios.get('/user/asambleasActivas'); //aqui nose porque no me dejaba subirlo lo deje como stash y se bugeo lol
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;
