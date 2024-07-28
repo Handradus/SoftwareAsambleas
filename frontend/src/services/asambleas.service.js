@@ -17,3 +17,13 @@ export async function GetAsambleas() {
         throw error.response?.data || error.message;
     }
 }
+
+export async function GetAsambleaId(id) {
+    try {
+        const response = await axios.get(`/user/obtenerAsamblea/${id}`);
+        console.log('Respuesta del backend:', response); //log pa depurar algunos errores medios locos
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+}
