@@ -10,6 +10,8 @@ import Users from './pages/Users';
 import CreateAsamblea from './pages/CreateAsamblea';
 import GetAsamblea from './pages/GetAsamblea';
 import GetAsambleaID from './pages/GetAsambleaID';
+import CreateFormulario from './pages/CreateFormulario';
+import BorrarFormularioActivo from './pages/DeleteFormulario';
 
 const AppRouter = () => {
   return (
