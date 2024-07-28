@@ -12,6 +12,7 @@ import GetAsamblea from './pages/GetAsamblea';
 import GetAsambleaID from './pages/GetAsambleaID';
 import CreateFormulario from './pages/CreateFormulario';
 import BorrarFormularioActivo from './pages/DeleteFormulario';
+import CerrarAsamblea from './pages/DeleteAsambleaActiva';
 
 const AppRouter = () => {
   return (
@@ -49,6 +50,14 @@ const AppRouter = () => {
         element={
           <ProtectedRoute>
             <GetAsambleaID />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/cerrar-asamblea"
+        element={
+          <ProtectedRoute>
+            <CerrarAsamblea />
           </ProtectedRoute>
         }
       />
