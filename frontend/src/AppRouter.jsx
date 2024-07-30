@@ -10,6 +10,11 @@ import Users from './pages/Users';
 import CreateAsamblea from './pages/CreateAsamblea';
 import EmitirVoto from './pages/EmitirVoto';
 import MostrarVotacion from './pages/MostrarVotacion';
+import GetAsamblea from './pages/GetAsamblea';
+import GetAsambleaID from './pages/GetAsambleaID';
+import CreateFormulario from './pages/CreateFormulario';
+import BorrarFormularioActivo from './pages/DeleteFormulario';
+import CerrarAsamblea from './pages/DeleteAsambleaActiva';
 
 const AppRouter = () => {
   return (
@@ -31,6 +36,46 @@ const AppRouter = () => {
         element={
           <ProtectedRoute>
             <CreateAsamblea />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/get-asamblea"
+        element={
+          <ProtectedRoute>
+            <GetAsamblea />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/get-asamblea/:id"
+        element={
+          <ProtectedRoute>
+            <GetAsambleaID />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/cerrar-asamblea"
+        element={
+          <ProtectedRoute>
+            <CerrarAsamblea />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/crear-formulario"
+        element={
+          <ProtectedRoute>
+            <CreateFormulario />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/borrar-formulario"
+        element={
+          <ProtectedRoute>
+            <BorrarFormularioActivo />
           </ProtectedRoute>
         }
       />
