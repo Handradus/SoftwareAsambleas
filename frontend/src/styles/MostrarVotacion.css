@@ -1,0 +1,43 @@
+.votacion-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .votacion-titulo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .votacion-opciones {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .votacion-opcion {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .votacion-opcion:last-child {
+    border-bottom: none;
+  }
+  
+  .votacion-opcion-nombre {
+    font-size: 18px;
+  }
+  
+  .votacion-opcion-votos {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
