@@ -18,7 +18,7 @@ export async function createForm (req,res){
                 message: "Ya hay una votacion activa en este momento"
             });
         }
-        if (!opciones || opciones.length === 0) {
+        if (!opciones || opciones.length < 2) {
             return res.status(400).json({ message: "Al menos 2 opciones son requeridas." });
           }
 
