@@ -8,6 +8,8 @@ import EditUser from './pages/EditUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import Users from './pages/Users';
 import CreateAsamblea from './pages/CreateAsamblea';
+import EmitirVoto from './pages/EmitirVoto';
+import MostrarVotacion from './pages/MostrarVotacion';
 
 const AppRouter = () => {
   return (
@@ -55,6 +57,22 @@ const AppRouter = () => {
             <EditUser />
           </ProtectedRoute>
         } 
+      />
+      <Route 
+        path="/emitir-voto" 
+        element={
+          <ProtectedRoute>
+            <EmitirVoto />
+          </ProtectedRoute>
+        }
+      />
+      <Route 
+        path="/mostrar-votacion" 
+        element={
+          <ProtectedRoute>
+            <MostrarVotacion />
+          </ProtectedRoute>
+        }
       />
       
       <Route path="*" element={<Error404 />} />
