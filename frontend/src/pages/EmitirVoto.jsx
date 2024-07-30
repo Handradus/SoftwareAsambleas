@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { emitirVoto as emitirVotoService, mostrarVotacion as mostrarVotacionService } from '../services/votacion.service';
 import '../styles/EmitirVoto.css'; // Importa los estilos CSS
-
+// si funca
 const EmitirVoto = () => {
   const [voto, setVoto] = useState('');
   const [message, setMessage] = useState('');

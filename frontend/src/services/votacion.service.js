@@ -1,5 +1,5 @@
 import axios from './root.service.js'; // Asegúrate de que este import esté correcto según tu configuración
-
+//funca a medias
 export async function emitirVoto(votoData) {
     try {
         const response = await axios.post('/user/emitirVoto', votoData);

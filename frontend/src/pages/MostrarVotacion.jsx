@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { mostrarVotacion as mostrarVotacionService } from '../services/votacion.service';
 import '../styles/MostrarVotacion.css';
-
+//no funca
 const MostrarVotacion = () => {
   const [votacion, setVotacion] = useState(null);
 
