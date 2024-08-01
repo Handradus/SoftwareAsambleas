@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { createFormulario } from '../services/formularios.service';
+import '../styles/Formulario.css';
 
 const CreateFormulario = () => {
     const [formData, setFormData] = useState({
@@ -77,7 +78,7 @@ const CreateFormulario = () => {
                             <button type="button" onClick={() => removeOpcion(index)}>Eliminar</button>
                         </div>
                     ))}
-                    <button type="button" onClick={addOpcion}>Añadir Opción</button>
+                    <button type="buttonAdd" onClick={addOpcion}>Añadir Opción</button>
                     <button type="submit">Crear Formulario</button>
                 </form>
             </div>
