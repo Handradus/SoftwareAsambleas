@@ -17,12 +17,11 @@ const GetAsambleaID = () => {
                 setError(null); //Reiniciamoss el error si la solicitud es exitosa
             } catch (error) {
                 console.error(error); //si hay error lo mostramos
-                setError('Error al obtener la asamblea. Verifique el ID ingresado.'); //establecemos el mensaje de error
+                setError('Error al obtener la asamblea.'); //establecemos el mensaje de error
             }
         };
         fetchAsamblea();
     }, [id]);
-
     return (
         <>
             <div className='main-container'>
