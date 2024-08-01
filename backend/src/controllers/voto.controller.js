@@ -43,7 +43,7 @@ export async function emitirVoto(req, res) {
         }
 
         // Verifica que la opción elegida esté dentro del rango válido de opciones del formulario
-        if (elegido >= form.opciones.length || elegido < 0) {
+         if (elegido > form.opciones.length || elegido <= 0) {
             return res.status(400).json({ message: 'Opción inválida' });
         }
 
