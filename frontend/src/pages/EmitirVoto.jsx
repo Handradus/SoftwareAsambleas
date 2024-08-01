@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { emitirVoto as emitirVotoService, mostrarVotacion as mostrarVotacionService } from '../services/votacion.service';
 import '../styles/EmitirVoto.css'; // Importa los estilos CSS
 

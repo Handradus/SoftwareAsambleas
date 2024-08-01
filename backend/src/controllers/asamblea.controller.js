@@ -27,11 +27,6 @@ export async function crearAsamblea(req, res) {
 // Obtener una asamblea por su ID
 export async function obtenerAsamblea(req, res) {
     try {
-        if (!req.user || !req.user.isAdmin) {
-            return res.status(403).json({
-                message: "Acceso denegado: solo los administradores pueden cerrar una asamblea."
-            });
-        }
         const asamblea = await Asamblea.findById(req.params.id);
         if (!asamblea) {
             return res.status(404).json({
@@ -79,14 +74,6 @@ export async function cerrarAsambleaID(req, res) {
 
         // Log para verificar el estado de req.user
         console.log("Estado de req.user:", req.user);
-
-        // Verificar que el usuario es un administrador
-        if (!req.user || !req.user.isAdmin) {
-            return res.status(403).json({
-                message: "Acceso denegado: solo los administradores pueden cerrar una asamblea."
-            });
-        }
-
         // Buscar la asamblea
         let asamblea = await Asamblea.findById(asambleaId);
 
@@ -126,14 +113,6 @@ export async function cerrarAsambleaActiva(req, res) {
     try {
            // Log para verificar el estado de req.user
         console.log("Estado de req.user:", req.user);
-
-        // Verificar que el usuario es un administrador
-        if (!req.user || !req.user.isAdmin) {
-            return res.status(403).json({
-                message: "Acceso denegado: solo los administradores pueden cerrar una asamblea."
-            });
-        }
-
         let asamblea = await Asamblea.findOne({ activa: true });
         //linea para comprobar que la votacion este cerrada
         const idvotacion=asamblea.votacion;
@@ -194,14 +173,6 @@ export async function asambleasActivas(req, res) {
 export async function agregarAnotacion(req, res) {
     try {
         const { anotacion } = req.body;
-
-        // Verificar que el usuario es un administrador
-        if (!req.user || !req.user.isAdmin) {
-            return res.status(403).json({
-                message: "Acceso denegado: solo los administradores pueden agregar anotaciones."
-            });
-        }
-
         // Buscar la asamblea activa
         let asamblea = await Asamblea.findOne({ activa: true });
         if (!asamblea) {
