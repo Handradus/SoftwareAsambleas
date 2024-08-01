@@ -32,8 +32,8 @@ router.post('/Lista', firmarLista);
 
 // Rutas de asamblea
 router.post('/crearAsamblea', isAdmin, crearAsamblea);
-router.get('/obtenerAsamblea/:id', obtenerAsamblea);
-router.get('/obtenerAsambleaPorFecha/:fecha', obtenerAsambleaPorFecha);
+router.get('/obtenerAsamblea/:id', isAdmin, obtenerAsamblea);
+router.get('/obtenerAsambleaPorFecha/:fecha', isAdmin, obtenerAsambleaPorFecha);
 router.post('/cerrarAsamblea', isAdmin, cerrarAsambleaID);
 router.post('/cerrarAsambleaActiva', isAdmin, cerrarAsambleaActiva);
 router.get('/asambleasActivas', isAdmin, asambleasActivas);
