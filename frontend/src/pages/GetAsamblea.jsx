@@ -26,12 +26,12 @@ const GetAsamblea = () => {
                 {asambleas.length > 0 ? (
                     <ul>
                         {asambleas.map((asamblea) => (
-                            <li key={asamblea._id}>
+                            <ul key={asamblea._id}>
                                 <p>ID: {asamblea._id}</p>
                                 <p>Fecha: {new Date(asamblea.fecha).toLocaleDateString()}</p>
                                 <p>Puntos: {asamblea.puntos.join(', ')}</p>
                                 <p>Resolutiva: {asamblea.resolutiva ? 'Sí' : 'No'}</p>
-                            </li>
+                            </ul>
                         ))}
                     </ul>
                 ) : (
