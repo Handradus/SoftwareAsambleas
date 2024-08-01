@@ -15,7 +15,7 @@ const UpdateDirectiva = () => {
     e.preventDefault();
     try {
       const response = await ActualizarDirectiva(id, { nombre, cargo, email });
-      console.log(response.data);
+      console.log('Directiva actualiza',response);
       setMensaje('Directiva actualizada con éxito');
       setError(null);
     } catch (error) {

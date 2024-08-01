@@ -11,7 +11,7 @@ const DeleteDirectiva = () => {
   const handleEliminar = async (e) => {
     e.preventDefault();
 
-    
+
     if (!id.trim()) {
       setError('Por favor, ingresa un ID válido.');
       setMessage(null);
