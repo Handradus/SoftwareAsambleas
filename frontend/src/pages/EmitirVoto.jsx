@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { emitirVoto as emitirVotoService, mostrarVotacion as mostrarVotacionService } from '../services/votacion.service';
 import '../styles/EmitirVoto.css'; // Importa los estilos CSS
-// si funca
+
 const EmitirVoto = () => {
-  const [voto, setVoto] = useState('');
+  const [voto, setVoto] = useState(null);
   const [message, setMessage] = useState('');
   const [votacion, setVotacion] = useState(null);
 
@@ -14,7 +14,8 @@ const EmitirVoto = () => {
         console.log('Datos de la votación activa:', data); // Log para depurar
         setVotacion(data);
       } catch (error) {
-        console.error('Error al obtener la votación activa:', error);
+        const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
+        console.error('Error al obtener la votación activa:', errorMessage);
       }
     };
 
@@ -24,10 +25,13 @@ const EmitirVoto = () => {
   const handleVoto = async (e) => {
     e.preventDefault();
     try {
-      await emitirVotoService({ voto });
+      console.log('Enviando voto:', { elegido: voto });  // Log para depurar
+      await emitirVotoService({ elegido: voto });  // Enviar { elegido: voto } al servicio
       setMessage('Voto emitido con éxito');
     } catch (error) {
-      setMessage('Error al emitir el voto');
+      const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
+      setMessage(`Error al emitir el voto: ${errorMessage}`);
+      console.error('Error al emitir el voto:', error);
     }
   };
 
@@ -39,14 +43,14 @@ const EmitirVoto = () => {
           <h3 className="votacion-consulta">{votacion.consulta}</h3>
           <form onSubmit={handleVoto}>
             <div className="votacion-opciones">
-              {votacion.opciones.map((opcion) => (
+              {votacion.opciones.map((opcion, index) => (
                 <div key={opcion._id} className="votacion-opcion">
                   <input
                     type="radio"
                     id={opcion._id}
                     name="voto"
-                    value={opcion.opcion}
-                    onChange={(e) => setVoto(e.target.value)}
+                    value={index + 1}  // Usamos el índice + 1 como valor
+                    onChange={(e) => setVoto(Number(e.target.value))}  // Convertimos el valor a número
                   />
                   <label htmlFor={opcion._id}>{opcion.opcion}</label>
                 </div>
