@@ -11,7 +11,7 @@ const Navbar = () => {
     const logoutSubmit = () => {
         try {
             logout();
-            navigate('/'); 
+            navigate('/');
         } catch (error) {
             console.error('Error al cerrar sesión:', error);
         }
@@ -26,15 +26,35 @@ const Navbar = () => {
                         alt="Logo metodología de desarrollo"
                     />
                 </li>
-                <li className={location.pathname === "/inicio" ? "active" : ""}>
+                <li className={location.pathname === "/home" ? "active" : ""}>
                     <NavLink to="/home">Inicio</NavLink>
                 </li>
                 {userRole === 'administrador' && (
-                    <li className={location.pathname === "/usuarios" ? "active" : ""}>
-                        <NavLink to="/users">Usuarios</NavLink>
-                    </li>
+                    <>
+                        <li className={location.pathname === "/create-asamblea" ? "active" : ""}>
+                            <NavLink to="/create-asamblea">Crear Asamblea</NavLink>
+                        </li>
+                        <li className={location.pathname === "/get-asamblea" ? "active" : ""}>
+                            <NavLink to="/get-asamblea">Obtener Asambleas</NavLink>
+                        </li>
+                        <li className={location.pathname === "/cerrar-asamblea" ? "active" : ""}>
+                            <NavLink to="/cerrar-asamblea">Cerrar Asamblea</NavLink>
+                        </li>
+                        <li className={location.pathname === "/crear-formulario" ? "active" : ""}>
+                            <NavLink to="/crear-formulario">Crear Formulario</NavLink>
+                        </li>
+                        <li className={location.pathname === "/borrar-formulario" ? "active" : ""}>
+                            <NavLink to="/borrar-formulario">Borrar Formulario</NavLink>
+                        </li>
+                        <li className={location.pathname === "/mostrar-votacion" ? "active" : ""}>
+                            <NavLink to="/mostrar-votacion">Mostrar Votación</NavLink>
+                        </li>
+                    </>
                 )}
-                <li className={location.pathname === "/perfil" ? "active" : ""}>
+                <li className={location.pathname === "/emitir-voto" ? "active" : ""}>
+                    <NavLink to="/emitir-voto">Emitir Voto</NavLink>
+                </li>
+                <li className={location.pathname === "/profile" ? "active" : ""}>
                     <NavLink to="/profile">Perfil</NavLink>
                 </li>
                 <li className={location.pathname === "/" ? "active" : ""}>
