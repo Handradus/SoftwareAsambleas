@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { deleteFormulario } from '../services/formularios.service';
+import '../styles/Formulario.css';
 
 
 const BorrarFormularioActivo = () => {
