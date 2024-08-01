@@ -8,6 +8,7 @@ const CreateAsamblea = () => {
     puntos: '',
     resolutiva: false,
   });
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -20,12 +21,18 @@ const CreateAsamblea = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log('Datos enviados al backend:', formData); //depuracions
+      console.log('Datos enviados al backend:', formData); // Depuración
       const responseData = await PostAsambleas(formData);
       alert('Asamblea creada correctamente!');
       console.log('Respuesta de nuestra api', responseData);
+      setError(null); // Reiniciamos el error si la solicitud es exitosa
     } catch (error) {
       console.error(error);
+      if (error.message === 'Ya existe una asamblea activa. Debe cerrar la asamblea activa antes de crear una nueva.') {
+        setError('Ya existe una asamblea activa. Debe cerrar la asamblea activa antes de crear una nueva.');
+      } else {
+        setError('Error al crear la asamblea. Inténtelo nuevamente.');
+      }
     }
   };
 
@@ -34,7 +41,8 @@ const CreateAsamblea = () => {
       <div className='main-container'>
         <Navbar />
         <form onSubmit={handleSubmit}>
-          <h1>Create Asamblea</h1>
+          <h1>Crear Asamblea</h1>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <p>Fecha</p>
           <input type='date' name='fecha' value={formData.fecha} onChange={handleChange} required />
           <p>Puntos</p>
