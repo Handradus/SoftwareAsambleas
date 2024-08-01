@@ -16,9 +16,6 @@ export const createDirectiva = async (req, res) => {
     if (existeCargo) {
       return res.status(400).json({ message: `Ya existe un ${cargo} registrado` });
     }
-
-
-
     const newDirectiva = new Directiva({ nombre, cargo: cargoLowercase , email });
 
     await newDirectiva.save();
