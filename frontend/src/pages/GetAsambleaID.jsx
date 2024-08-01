@@ -28,16 +28,16 @@ const GetAsambleaID = () => {
                 <Navbar />
                 <h1>Detalles de la Asamblea</h1>
                 {error ? (
-                    <p>{error}</p> //Mostramo elmensaje de error
+                    <p>{error}</p>
                 ) : asamblea ? (
-                    <div>
-                        <p>ID: {asamblea._id}</p>
-                        <p>Fecha: {new Date(asamblea.fecha).toLocaleDateString()}</p>
-                        <p>Puntos: {asamblea.puntos.join(', ')}</p>
-                        <p>Resolutiva: {asamblea.resolutiva ? 'Sí' : 'No'}</p>
-                    </div>
+                        <ul key={asamblea._id}>
+                            <p>ID: {asamblea._id}</p>
+                            <p>Fecha: {new Date(asamblea.fecha).toLocaleDateString()}</p>
+                            <p>Puntos: {asamblea.puntos.join(', ')}</p>
+                            <p>Resolutiva: {asamblea.resolutiva ? 'Sí' : 'No'}</p>
+                        </ul>
                 ) : (
-                    <p>Cargando...</p>
+                    <p>No se encuentra la Asamblea</p>
                 )}
             </div>
         </>
