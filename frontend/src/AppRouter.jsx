@@ -15,6 +15,11 @@ import GetAsambleaID from './pages/GetAsambleaID';
 import CreateFormulario from './pages/CreateFormulario';
 import BorrarFormularioActivo from './pages/DeleteFormulario';
 import CerrarAsamblea from './pages/DeleteAsambleaActiva';
+import EliminarDirectiva from './pages/DeleteDirectiva';
+import ActualizarDirectiva from './pages/UpdateDirectiva';
+
+
+
 
 const AppRouter = () => {
   return (
@@ -118,6 +123,22 @@ const AppRouter = () => {
             <MostrarVotacion />
           </ProtectedRoute>
         }
+      />
+      <Route 
+        path="/eliminar-directiva" 
+        element={
+          <ProtectedRoute>
+            <EliminarDirectiva />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/actualizar-directiva" 
+        element={
+          <ProtectedRoute>
+            <ActualizarDirectiva />
+          </ProtectedRoute>
+        } 
       />
       
       <Route path="*" element={<Error404 />} />
