@@ -27,6 +27,11 @@ export async function crearAsamblea(req, res) {
 // Obtener una asamblea por su ID
 export async function obtenerAsamblea(req, res) {
     try {
+        if (!req.user || !req.user.isAdmin) {
+            return res.status(403).json({
+                message: "Acceso denegado: solo los administradores pueden cerrar una asamblea."
+            });
+        }
         const asamblea = await Asamblea.findById(req.params.id);
         if (!asamblea) {
             return res.status(404).json({
